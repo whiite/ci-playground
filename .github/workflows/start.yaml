@@ -5,9 +5,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+          fetch-depth: 1
+
       - name: console output
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh workflow run chained.yaml --ref ${{ github.ref_name }} -f input=testing
+          gh workflow run chained.yaml --ref ${{ github.ref }} -f input=testing
 

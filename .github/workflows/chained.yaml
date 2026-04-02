@@ -1,0 +1,17 @@
+on:
+  workflow_dispatch:
+    inputs:
+      input:
+        type: string
+        required: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: chained call
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "got input: ${{ inputs.input }}"
+
